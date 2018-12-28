@@ -1,0 +1,85 @@
+#!/bin/sh
+
+echo "Starting rcS..."
+
+mkdir -p  /lib/modules/$(uname -r);
+touch /lib/modules/$(uname -r)/modules.dep
+
+syslogd -C400
+
+echo "++ Mounting filesystem"
+mkdir -p /dev/pts /dev/shm
+mount -a
+
+/bin/sh
+
+export PATH=$PATH:/usr/local/bin
+export LD_LIBRARY_PATH=/usr/local/lib/
+
+cat - >>/etc/profile <<EOF
+export PATH=$PATH
+export LD_LIBRARY_PATH=/usr/local/lib/
+EOF
+
+echo "++ Setting up mdev"
+
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+
+# the device driver is not creating this node, so for now
+# create the devcfg device node manually
+
+if [ ! -e /dev/xdevcfg ]
+then
+	mknod /dev/xdevcfg c 259 0
+fi
+
+echo "++ Setting hostname"
+for x in $(cat /proc/cmdline)
+do
+	case $x in
+	hostname=*) echo ${x##*=} >/etc/hostname;;
+	esac
+done
+
+	
+hostname -F /etc/hostname
+echo "++ Start Lo"
+ifconfig lo up
+
+echo "++ Networking .. assigning serial console, use CTRL-C to break"
+if [ -e /mnt/local/network ]; then
+	echo "++ Sourcing /mnt/network.."
+	source /mnt/local/network
+else
+	/etc/network/default-networkrc
+fi
+
+[ -e /mnt/local/ntpd.conf ] && /mnt/local/ntpd.conf
+
+
+echo "++ Starting http daemon"
+httpd -h /var/www
+
+echo "++ Starting ssh daemon"
+chmod 600 /etc/ssh_host_*
+/usr/sbin/sshd
+
+if [ -f /mnt/init.sh ]
+then
+	echo "++ Running user script OVERRIDE init.sh from SD Card"
+     	source /mnt/init.sh
+else
+	/sbin/load.packages /mnt/packages
+fi
+
+if [ -x /mnt/local/rc.user ]; then
+	echo ++ calling /mnt/local/rc.user
+	/mnt/local/rc.user	
+fi
+
+echo $(hostname) $(uptime) > /var/www/d-tacq/rc-local-complete
+echo "++ rcS complete $(cat /var/www/d-tacq/rc-local-complete)"
+
+
+
