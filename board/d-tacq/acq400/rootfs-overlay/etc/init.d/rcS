@@ -17,8 +17,11 @@ echo "++ Mounting main fs"
 if [ -e /mnt/rootfs.ext2.gz ]; then
 	[ -e /mnt/rootfs.ext2 ] && rm /mnt/rootfs.ext2
 	echo "+++ extract /mnt/rootfs.ext2.gz on first boot takes 20s"
-	gunzip -t /mnt/rootfs.ext2.gz
+	(while [1]; do sleep 1; ls -l /mnt/rootfs.ext2; done) & MON=$!
+	gunzip /mnt/rootfs.ext2.gz &
+	wait; kill -9 $MON; wait
 fi
+
 mkdir /mnt2
 mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 (cd /mnt2/usr
