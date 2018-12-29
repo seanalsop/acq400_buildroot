@@ -30,6 +30,7 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 
 # fixup to protect existing packages
 ln -s /bin/procServ /usr/local/bin
+ln -s /usr/bin/expect /usr/local/bin
 
 export PATH=$PATH:/usr/local/bin
 export LD_LIBRARY_PATH=/usr/local/lib/
