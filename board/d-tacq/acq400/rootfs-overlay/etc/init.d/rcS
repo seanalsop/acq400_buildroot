@@ -26,15 +26,20 @@ mkdir /mnt2
 mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 (cd /mnt2/usr
 	for file in *; do
-		if [ -d $file ] && [ "$file" != "local" ] ; then
-			mkdir -p /usr/$file; mount --bin $file /usr/$file
-		fi
+		case $file in
+		local|share)
+			echo skip $file;;
+		*)
+			if [ -d $file ]; then
+				mkdir -p /usr/$file; mount --bin $file /usr/$file
+			fi;;
+		esac
 	done
 )
 
 # fixup to protect existing packages
 mkdir -p /usr/local/bin
-ln -s /bin/procServ /usr/local/bin
+ln -s /usr/bin/procServ /usr/local/bin
 ln -s /usr/bin/expect /usr/local/bin
 
 export PATH=$PATH:/usr/local/bin
