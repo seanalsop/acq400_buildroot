@@ -19,6 +19,7 @@ define ACQ400_UTIL_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/ob_calc_527 $(TARGET_DIR)/bin
 	$(INSTALL) -D -m 0755 $(@D)/daemon $(TARGET_DIR)/bin
 	$(INSTALL) -D -m 0755 $(@D)/xiloader $(TARGET_DIR)/bin
+	$(INSTALL) -D -m 0755 $(@D)/dump-cstrings $(TARGET_DIR)/bin
 endef
 
 $(eval $(generic-package))
