@@ -15,8 +15,9 @@ mount -a
 
 echo "++ Mounting main fs"
 if [ -e /mnt/rootfs.ext2.gz ]; then
-	echo "+++ extract /mnt/rootfs.ext2.gz on first boot"
-	gunzip /mnt/rootfs.ext2.gz
+	[ -e /mnt/rootfs.ext2 ] && rm /mnt/rootfs.ext2
+	echo "+++ extract /mnt/rootfs.ext2.gz on first boot takes 20s"
+	gunzip -t /mnt/rootfs.ext2.gz
 fi
 mkdir /mnt2
 mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
@@ -29,6 +30,7 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 )
 
 # fixup to protect existing packages
+mkdir -p /usr/local/bin
 ln -s /bin/procServ /usr/local/bin
 ln -s /usr/bin/expect /usr/local/bin
 
