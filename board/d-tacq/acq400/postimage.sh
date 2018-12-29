@@ -34,6 +34,6 @@ gzip $BINARIES_DIR/rootfs.ext2
 EOF
 chmod a+rx $HOST_DIR/fix-initrd
 
-echo LD_PRELOAD $LD_PRELOAD
+unset LD_PRELOAD
 LD_LIBRARY_PATH=./output/build/host-fakeroot-1.20.2/.libs ./output/host/bin/fakeroot $HOST_DIR/fix-initrd
 echo POSTIMAGE99

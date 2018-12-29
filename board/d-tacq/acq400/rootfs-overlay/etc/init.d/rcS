@@ -15,11 +15,13 @@ mount -a
 
 echo "++ Mounting main fs"
 if [ -e /mnt/rootfs.ext2.gz ]; then
+	ln -s /bin/busybox /bin/awk
 	[ -e /mnt/rootfs.ext2 ] && rm /mnt/rootfs.ext2
 	echo "+++ extract /mnt/rootfs.ext2.gz on first boot takes 20s"
-	(while [ 1 ]; do sleep 1; ls -l /mnt/rootfs.ext2; done) & MON=$!
-	gunzip /mnt/rootfs.ext2.gz &
-	wait; kill -9 $MON; wait
+	(while [ 1 ]; do sleep 1; ls -l /mnt/rootfs.ext2 | awk '{ print $9" "$5 }'; done) & MON=$!
+	(gunzip /mnt/rootfs.ext2.gz & wait)
+	kill -9 $MON; wait
+	rm /bin/awk
 fi
 
 mkdir /mnt2
@@ -27,8 +29,11 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 (cd /mnt2/usr
 	for file in *; do
 		case $file in
-		local|share)
+		local)
 			echo skip $file;;
+		share)
+			mkdir -p /usr/share/;
+			cp -a /mnt2/usr/share/udhcpc /usr/share;;
 		*)
 			if [ -d $file ]; then
 				mkdir -p /usr/$file; mount --bin $file /usr/$file
