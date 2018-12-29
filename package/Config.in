@@ -2179,4 +2179,9 @@ menu "Text editors and viewers"
 	source "package/vim/Config.in"
 endmenu
 
+menu "ACQ400"
+	source "package/acq400_util/Config.in"
+	source "package/acq400_procServ/Config.in"
+endmenu
+
 endmenu
