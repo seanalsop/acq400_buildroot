@@ -1,0 +1,5 @@
+config BR2_PACKAGE_ACQ400_FMC_UTIL
+	bool "acq400_fmc_util"
+	help
+	  ACQ400 FMC support - fru-dump-acq, from Rubini 2013
+	

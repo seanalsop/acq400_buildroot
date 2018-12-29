@@ -2182,6 +2182,7 @@ endmenu
 menu "ACQ400"
 	source "package/acq400_util/Config.in"
 	source "package/acq400_procServ/Config.in"
+	source "package/acq400_fmc_util/Config.in"
 endmenu
 
 endmenu

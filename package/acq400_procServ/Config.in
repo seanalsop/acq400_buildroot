@@ -1,0 +1,5 @@
+config BR2_PACKAGE_ACQ400_PROCSERV
+	bool "acq400_procServ"
+	help
+	  ACQ400 process launcher
+

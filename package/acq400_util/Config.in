@@ -1,0 +1,4 @@
+config BR2_PACKAGE_ACQ400_UTIL
+	bool "acq400_util"
+	help
+	  ACQ400 Utils fs2xml  ob_calc_527 daemon xiloader

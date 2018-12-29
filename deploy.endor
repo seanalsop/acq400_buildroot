@@ -1,0 +1,2 @@
+
+scp output/images/uinitrd.ext2.gz output/images/rootfs.ext2.gz dt100@endor:ACQ400.4.14
