@@ -2,8 +2,6 @@
 
 echo "Starting rcS..."
 
-mkdir -p  /lib/modules/$(uname -r);
-touch /lib/modules/$(uname -r)/modules.dep
 
 syslogd -C400
 
@@ -90,6 +88,20 @@ fi
 
 
 # PS1=DBG4: /bin/sh
+
+echo "++ locate kernel modules"
+
+mkdir -p  /lib/modules/$(uname -r);
+touch /lib/modules/$(uname -r)/modules.dep
+PKOSTAR=/mnt/ko/packageko-$(uname -r)*.img
+
+if [ -e $PKOSTAR ] && [ $(ls -l $PKOSTAR | wc -w) -eq 1 ]; then
+	echo PACKAGE KO $PKOSTAR exists, mount it
+	mount $PKOSTAR /lib/modules/$(uname -r)
+else
+	ERROR $PKOSTAR does not exist FIXME
+	PS1=FIXME: /bin/sh
+fi
 
 	
 echo "++ Starting http daemon"
