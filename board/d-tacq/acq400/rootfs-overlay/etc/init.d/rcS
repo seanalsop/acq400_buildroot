@@ -95,11 +95,11 @@ mkdir -p  /lib/modules/$(uname -r);
 touch /lib/modules/$(uname -r)/modules.dep
 PKOSTAR=/mnt/ko/packageko-$(uname -r)*.img
 
-if [ -e $PKOSTAR ] && [ $(ls -l $PKOSTAR | wc -w) -eq 1 ]; then
+if [ -e $PKOSTAR ] && [ $(ls -1 $PKOSTAR | wc -w) -eq 1 ]; then
 	echo PACKAGE KO $PKOSTAR exists, mount it
 	mount $PKOSTAR /lib/modules/$(uname -r)
 else
-	ERROR $PKOSTAR does not exist FIXME
+	ERROR /mnt/ko/packageko-$PKOSTAR\*.img unique file does not exist ..
 	PS1=FIXME: /bin/sh
 fi
 
