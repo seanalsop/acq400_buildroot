@@ -17,6 +17,7 @@ echo "++ Mounting main fs"
 if [ -e /mnt/rootfs.ext2.gz ]; then
 	ln -s /bin/busybox /bin/awk
 	[ -e /mnt/rootfs.ext2 ] && rm /mnt/rootfs.ext2
+	sync;sync;
 	echo "+++ first time extract /mnt/rootfs.ext2.gz boot .."
 	(while [ 1 ]; do sleep 1; ls -l /mnt/rootfs.ext2 | awk '{ print $9" "$5 }'; done) & MON=$!
 	(gunzip /mnt/rootfs.ext2.gz & wait)
