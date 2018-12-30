@@ -62,14 +62,6 @@ mdev -s
 
 # PS1=DBG2: /bin/sh
 
-# the device driver is not creating this node, so for now
-# create the devcfg device node manually
-
-if [ ! -e /dev/xdevcfg ]
-then
-	mknod /dev/xdevcfg c 259 0
-fi
-
 echo "++ Setting hostname"
 for x in $(cat /proc/cmdline)
 do
