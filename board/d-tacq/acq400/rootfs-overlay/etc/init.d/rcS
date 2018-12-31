@@ -91,17 +91,20 @@ fi
 
 echo "++ locate kernel modules"
 
-mkdir -p  /lib/modules/$(uname -r);
-touch /lib/modules/$(uname -r)/modules.dep
+LIBMOD=/lib/modules/$(uname -r)
+mkdir -p $LIBMOD
+touch $LIBMOD/modules.dep
 PKOSTAR=/mnt/ko/packageko-$(uname -r)*.img
 
 if [ -e $PKOSTAR ] && [ $(ls -1 $PKOSTAR | wc -w) -eq 1 ]; then
 	echo PACKAGE KO $PKOSTAR exists, mount it
-	mount $PKOSTAR /lib/modules/$(uname -r)
+	mount $PKOSTAR $LIBMOD
 else
 	ERROR /mnt/ko/packageko-$PKOSTAR\*.img unique file does not exist ..
 	PS1=FIXME: /bin/sh
 fi
+echo +++ bind legacy modules dir /usr/local/lib/modules
+mount --bind $LIBMOD /usr/local/lib/modules
 
 	
 echo "++ Starting http daemon"
