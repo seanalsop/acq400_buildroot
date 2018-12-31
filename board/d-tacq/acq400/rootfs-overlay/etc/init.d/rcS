@@ -42,7 +42,7 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 )
 
 # fixup to protect existing packages
-mkdir -p /usr/local/bin
+mkdir -p /usr/local/bin /usr/local/lib/modules
 ln -s /usr/bin/procServ /usr/local/bin
 ln -s /usr/bin/expect /usr/local/bin
 
