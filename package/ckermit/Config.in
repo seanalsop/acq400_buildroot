@@ -1,0 +1,5 @@
+config BR2_PACKAGE_CKERMIT
+	bool "ckermit"
+	help
+	  kermit communications program http://www.kermitproject.org/ckdaily.html
+
