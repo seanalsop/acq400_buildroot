@@ -26,7 +26,7 @@ rm -f $BINARIES_DIR/initrd.ext2*
 $HOST_DIR/sbin/mkfs.ext2 -d $IMAGES_INITRD -r 1 -N 0 -m 5 -L "acq400_initrd" $BINARIES_DIR/initrd.ext2  "16M" || \
 	{ ret=$?; echo "*** Maybe you need to increase the filesystem size (BR2_TARGET_ROOTFS_EXT2_SIZE)" 1>&2; exit $ret; }
 gzip $BINARIES_DIR/initrd.ext2
-mkimage -A arm -T ramdisk -C gzip -n "D-TACQ ACQ400 INITRD" -d output/images/initrd.ext2.gz output/images/uinitrd.ext2.gz
+mkimage -A arm -T ramdisk -C gzip -n "D-TACQ ACQ400 INITRD" -d output/images/initrd.ext2.gz output/images/uramdisk.image.gz
 
 rm -f $BINARIES_DIR/rootfs.ext2.gz
 gzip $BINARIES_DIR/rootfs.ext2
