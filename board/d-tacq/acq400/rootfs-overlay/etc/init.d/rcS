@@ -100,8 +100,16 @@ if [ -e $PKOSTAR ] && [ $(ls -1 $PKOSTAR | wc -w) -eq 1 ]; then
 	echo PACKAGE KO $PKOSTAR exists, mount it
 	mount $PKOSTAR $LIBMOD
 else
-	ERROR /mnt/ko/packageko-$PKOSTAR\*.img unique file does not exist ..
-	PS1=FIXME: /bin/sh
+	export LIBMOD PKOSTAR
+	echo "ERROR $PKOSTAR  unique file does not exist .."
+	if [ $(ls -1 /mnt/ko/package*img | wc -w) -eq 1 ]; then
+		PKOSTAR=/mnt/ko/package*img
+		echo "WARNING: trying this $PKOSTAR"
+		mount $PKOSTAR $LIBMOD
+		[ $? -eq 0 ] || PS1=FIXME: /bin/sh
+	else
+		PS1=FIXME: /bin/sh
+	fi
 fi
 echo +++ bind legacy modules dir /usr/local/lib/modules
 mount --bind $LIBMOD /usr/local/lib/modules
