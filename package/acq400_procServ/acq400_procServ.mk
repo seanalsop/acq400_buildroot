@@ -4,7 +4,9 @@
 #
 ################################################################################
 
-ACQ400_PROCSERV_VERSION = 2.7.0
+ACQ400_PROCSERV_VERSION = 2.6.0
+# DO NOT USE 2.7.0, breaks streamtonowhered
+#ACQ400_PROCSERV_VERSION = 2.7.0
 #ACQ400_PROCSERV_SOURCE = procServ-$(ACQ400_PROCSERV_VERSION).tar.gz
 ACQ400_PROCSERV_SITE = $(call github,ralphlange,procServ,V$(ACQ400_PROCSERV_VERSION))
 #ACQ400_PROCSERV_SITE_METHOD = local
