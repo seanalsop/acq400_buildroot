@@ -2185,6 +2185,7 @@ menu "ACQ400"
 	source "package/acq400_fmc_util/Config.in"
 	source "package/ckermit/Config.in"
 	source "package/curl/Config.in"
+        source "package/python-future/Config.in"
 endmenu
 
 endmenu
