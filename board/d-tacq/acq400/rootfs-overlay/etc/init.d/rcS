@@ -76,6 +76,9 @@ hostname -F /etc/hostname
 echo "++ Start Lo"
 ifconfig lo up
 
+echo "++ Setting EPOCH 2000 in case there is no NTP later"
+date -s 200001010000
+
 echo "++ Networking .. assigning serial console, use CTRL-C to break"
 if [ -e /mnt/local/network ]; then
 	echo "++ Sourcing /mnt/network.."
