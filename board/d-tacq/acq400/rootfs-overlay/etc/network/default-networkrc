@@ -25,7 +25,7 @@ start_eth() {
 }
 
 dhcp_killer() {
-	sleep 1
+	sleep 5
 	let countdown=10
 	while [ $countdown -gt 0 ]; do
 		echo +++ dhcp_killer counting $countdown
