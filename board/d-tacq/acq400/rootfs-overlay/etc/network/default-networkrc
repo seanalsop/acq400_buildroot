@@ -7,8 +7,25 @@ KILLDONE=/tmp/killdone
 get_mac_address() {
 	cat /sys/class/net/eth0/address
 }
+
+start_eth() {
+        timer=10
+        ifconfig eth0 up
+        while [ $timer -gt 0 ]; do
+                grep -q "up" /sys/class/net/eth0/operstate 
+                        if [ $? == 0 ]; then
+                                echo "ethernet link up"
+                                break
+                        else
+                                echo "Waiting for link up ... $timer"
+                                sleep 1 
+                                let timer=$timer-1
+                        fi
+        done
+}
+
 dhcp_killer() {
-	sleep 10
+	sleep 1
 	let countdown=10
 	while [ $countdown -gt 0 ]; do
 		echo +++ dhcp_killer counting $countdown
@@ -30,7 +47,7 @@ dhcp_killer() {
 	echo +++ setting fallback static ip $IP
 	ifconfig eth0 $IP up
 }
-
+start_eth
 echo "+++ Starting dhcp daemon [default]"
 dhcp_killer & killer_pid=$!
 udhcpc -q -s $DSCRIPT -x hostname:$(hostname) -p $UPID
