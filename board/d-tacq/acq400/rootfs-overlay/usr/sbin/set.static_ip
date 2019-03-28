@@ -1,0 +1,21 @@
+#!/bin/sh
+
+PORT=${1}
+IP=${2}
+
+if [ "x$PORT" = "x" -o "x$IP" = "x" ]; then
+	echo set.static_ip IPx ip-address
+fi
+
+PN=$(echo $PORT | tr -cd  [0-9])
+
+case $PN in
+0|1)
+	echo ifconfig eth$PN $IP >/mnt/local/network
+	chmod a+rx /mnt/local/network ;;
+esac
+
+
+
+
+

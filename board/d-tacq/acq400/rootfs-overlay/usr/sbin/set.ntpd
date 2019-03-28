@@ -1,0 +1,12 @@
+#!/bin/sh
+
+peer=${1}
+
+if [ "x$peer" != "x" ]; then
+	echo "ntpd -p $peer" >/mnt/local/ntpd.conf
+fi
+
+
+
+
+
