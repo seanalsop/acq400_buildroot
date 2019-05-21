@@ -135,12 +135,14 @@ fi
 
 # PS1=DBG6: /bin/sh
 
-if [ -x /mnt/local/rc.user ]; then
+if [ -x /etc/init.d/rc.user ]; then
 	echo ++ calling /mnt/local/rc.user
-	/mnt/local/rc.user	
+	/etc/init.d/rc.user	
 fi
 
 # PS1=DBG7: /bin/sh
+
+
 
 echo $(hostname) $(uptime) > /var/www/d-tacq/rc-local-complete
 echo "++ rcS complete $(cat /var/www/d-tacq/rc-local-complete)"
