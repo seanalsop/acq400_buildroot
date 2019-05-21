@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+if [ -x /mnt/local/rc.user ]; then
+	echo "+++ calling /mnt/local/rc.user"
+	/mnt/local/rc.user
+	echo "+++ /mnt/local/rc.user complete"
+else
+	echo "--- WARNING: /mnt/local/rc.user NOT FOUND"
+fi
+
