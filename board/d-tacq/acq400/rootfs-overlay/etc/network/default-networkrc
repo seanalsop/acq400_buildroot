@@ -66,11 +66,14 @@ fi
 udhcpc -b -a -s/usr/share/udhcpc/default.script  \
                 -x hostname:$(hostname) -p /var/run/udhcpc.eth0.pid
 source /tmp/dhcp.env
-if [ "x$siaddr" != "x" ]; then
+
+if [ -e /mnt/local/ntpd.conf ]; then
+	/mnt/local/ntpd.conf
+elif [ "x$ntpsrv" != "x" ]; then
+	ntpd -p $ntpsrv
+elif [ "x$siaddr" != "x" ]; then
         ntpd -p $siaddr
 elif [ "x$serverid" != "x" ]; then
-        if [ ! -e /mnt/local/ntpd.conf ]; then
-                ntpd -p $serverid
-        fi
+        ntpd -p $serverid
 fi
 

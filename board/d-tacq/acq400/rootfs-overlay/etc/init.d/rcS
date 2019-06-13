@@ -87,9 +87,6 @@ else
 	/etc/network/default-networkrc
 fi
 
-[ -e /mnt/local/ntpd.conf ] && /mnt/local/ntpd.conf
-
-
 # PS1=DBG4: /bin/sh
 
 echo "++ locate kernel modules"
