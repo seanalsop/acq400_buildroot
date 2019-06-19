@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_SALT_SSH
+	bool "python_salt_ssh"
+	help
+		salt_ssh agent free minion
+
+
+
