@@ -49,6 +49,11 @@ mkdir -p /usr/local/bin /usr/local/lib/modules
 ln -s /usr/bin/procServ /usr/local/bin
 ln -s /usr/bin/expect /usr/local/bin
 
+LETC=/mnt/local/local-etc.tgz 
+if [ -e $LETC ]; then
+	echo "++ unpacking $LETC"
+	tar xvzf $LETC -C /etc
+fi
 export PATH=$PATH:/usr/local/bin
 export LD_LIBRARY_PATH=/usr/local/lib/
 
