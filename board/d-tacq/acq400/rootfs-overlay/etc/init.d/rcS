@@ -17,7 +17,9 @@ if [ -e /mnt/rootfs.ext2.gz ]; then
 	[ -e /mnt/rootfs.ext2 ] && rm /mnt/rootfs.ext2
 	sync;sync;
 	echo "+++ first time extract /mnt/rootfs.ext2.gz boot .."
-	(while [ 1 ]; do sleep 1; ls -l /mnt/rootfs.ext2 | awk '{ print $9" "$5 }'; done) & MON=$!
+	(while [ 1 ]; do 
+		sleep 1; ls -l /mnt/rootfs.ext2 | awk '{ print $9" "$5 }'; 
+	done) & MON=$!
 	(gunzip /mnt/rootfs.ext2.gz & wait)
 	kill -9 $MON; wait
 	rm /bin/awk
@@ -35,7 +37,8 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 			cp -a /mnt2/usr/share/udhcpc /usr/share;;
 		*)
 			if [ -d $file ]; then
-				mkdir -p /usr/$file; mount --bin $file /usr/$file
+				mkdir -p /usr/$file
+				mount --bin $file /usr/$file
 			fi;;
 		esac
 	done
