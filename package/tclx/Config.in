@@ -1,0 +1,7 @@
+config BR2_PACKAGE_TCLX
+	bool "tclx"
+	help
+	  TclX, or Extended Tcl, provides access to the features exposed by API of POSIX systems such Unix.
+	  https://wiki.tcl-lang.org/page/TclX
+
+
