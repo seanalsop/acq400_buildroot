@@ -152,8 +152,8 @@ fi
 
 # PS1=DBG7: /bin/sh
 
-echo $(hostname) $(uptime) > /var/www/d-tacq/rc-local-complete
-echo "++ rcS complete $(cat /var/www/d-tacq/rc-local-complete)"
+echo $(hostname) $(uptime) > /var/www/d-tacq/rcS-complete
+echo "++ rcS complete $(cat /var/www/d-tacq/rcS-complete)"
 
 
 
