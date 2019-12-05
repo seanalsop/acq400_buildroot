@@ -1,0 +1,6 @@
+config BR2_PACKAGE_NETKIT_FTP
+	bool "netkit_ftp"
+	help
+	  Classic FTP client
+	  
+

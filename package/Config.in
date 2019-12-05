@@ -2188,6 +2188,7 @@ menu "ACQ400"
 	source "package/ckermit/Config.in"
 	source "package/curl/Config.in"
 	source "package/python-salt-ssh/Config.in"
+	source "package/netkit-ftp/Config.in"
 endmenu
 
 endmenu
