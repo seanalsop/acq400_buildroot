@@ -34,7 +34,15 @@ mount -o loop,ro -t ext2 /mnt/rootfs.ext2 /mnt2
 			echo skip $file;;
 		share)
 			mkdir -p /usr/share/;
-			cp -a /mnt2/usr/share/udhcpc /usr/share;;
+			for dir in share/*; do
+				case $dir in 
+				udhcpc)
+					cp -a $dir /usr/share;;
+				*)
+					mkdir -p /usr/$dir /usr/$dir
+					mount --bin $dir /usr/$dir;;
+				esac
+			done;;
 		*)
 			if [ -d $file ]; then
 				mkdir -p /usr/$file
