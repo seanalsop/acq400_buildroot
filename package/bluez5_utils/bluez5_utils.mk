@@ -5,7 +5,7 @@
 ################################################################################
 
 # Keep the version and patches in sync with bluez5_utils-headers
-BLUEZ5_UTILS_VERSION = 5.50
+BLUEZ5_UTILS_VERSION = 5.52
 BLUEZ5_UTILS_SOURCE = bluez-$(BLUEZ5_UTILS_VERSION).tar.xz
 BLUEZ5_UTILS_SITE = $(BR2_KERNEL_MIRROR)/linux/bluetooth
 BLUEZ5_UTILS_INSTALL_STAGING = YES
@@ -20,7 +20,8 @@ BLUEZ5_UTILS_DEPENDENCIES = \
 BLUEZ5_UTILS_CONF_OPTS = \
 	--enable-tools \
 	--enable-library \
-	--disable-cups
+	--disable-cups \
+	--with-dbusconfdir=/etc
 
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_OBEX),y)
 BLUEZ5_UTILS_CONF_OPTS += --enable-obex
@@ -116,13 +117,5 @@ BLUEZ5_UTILS_DEPENDENCIES += systemd
 else
 BLUEZ5_UTILS_CONF_OPTS += --disable-systemd
 endif
-
-define BLUEZ5_UTILS_INSTALL_INIT_SYSTEMD
-	mkdir -p $(TARGET_DIR)/etc/systemd/system/bluetooth.target.wants
-	ln -fs ../../../../usr/lib/systemd/system/bluetooth.service \
-		$(TARGET_DIR)/etc/systemd/system/bluetooth.target.wants/bluetooth.service
-	ln -fs ../../../usr/lib/systemd/system/bluetooth.service \
-		$(TARGET_DIR)/etc/systemd/system/dbus-org.bluez.service
-endef
 
 $(eval $(autotools-package))

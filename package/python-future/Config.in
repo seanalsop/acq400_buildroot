@@ -1,6 +1,7 @@
 config BR2_PACKAGE_PYTHON_FUTURE
 	bool "python-future"
+	depends on BR2_PACKAGE_PYTHON
 	help
-	  Clean single-source support for Python 3 and 2.
+	  Easy, clean, reliable Python 2/3 compatibility.
 
-	  https://python-future.org
+	  http://python-future.org

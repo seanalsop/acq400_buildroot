@@ -7,6 +7,8 @@ all variables used by BR must be propagated
 
 similar to https://github.com/Perl-Toolchain-Gang/ExtUtils-MakeMaker/commit/98e8532fffe5afa8186329acc44fb957427f1823
 
+see https://github.com/Perl-Toolchain-Gang/ExtUtils-MakeMaker/pull/331, merged in EU-MM v7.35_08
+
 Signed-off-by: Francois Perrad <francois.perrad@gadz.org>
 ---
  cpan/ExtUtils-MakeMaker/lib/ExtUtils/MakeMaker.pm | 2 +-
@@ -16,7 +18,7 @@ diff --git a/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MakeMaker.pm b/cpan/ExtUtils-M
 index d579256e86..48642e98fa 100644
 --- a/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MakeMaker.pm
 +++ b/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MakeMaker.pm
-@@ -703,7 +703,7 @@ END
+@@ -702,7 +702,7 @@ END
          }
          if ($self->{PARENT}) {
              $self->{PARENT}->{CHILDREN}->{$newclass} = $self;

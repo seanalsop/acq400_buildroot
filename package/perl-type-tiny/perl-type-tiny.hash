@@ -1,7 +1,7 @@
 # retrieved by scancpan from http://cpan.metacpan.org/
-md5    fad12549fe5b904173e18a05e82e5166 Type-Tiny-1.004002.tar.gz
-sha256 e52c7e9593052aed157a15d473b5c25a1dbb3454bf3cd6913df94cc9bb2be707 Type-Tiny-1.004002.tar.gz
+md5    04194fe9673ef5504be9d50aa5d6782a Type-Tiny-1.008003.tar.gz
+sha256 a44e6e3ab29f05516d2a670de817278a7a06d55bce6f4ceaeb84ce032dcd00f5 Type-Tiny-1.008003.tar.gz
 
 # computed by scancpan
-sha256 0caa5aef37fdb3eddc52419d193df594550c621b84f5990830482f9f8226adde COPYRIGHT
-sha256 c614dadb36b02257ab492e3d4341e52f3f03fe8147cafd2b7da03b3b5c0361e9 LICENSE
+sha256 7cf4a3f3f81896130c0bc8041fddd737052cdf28e1bd8af7046884f63f262e53 COPYRIGHT
+sha256 1fb7395e76eabf94c421912d7d0a4f7fa745d49e1acb76b222c21d605b66bd25 LICENSE
