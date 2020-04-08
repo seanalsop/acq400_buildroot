@@ -5,8 +5,7 @@
 ################################################################################
 
 ACQ400_UTIL_VERSION = 1.0
-ACQ400_UTIL_SITE = ../ACQ400/UTILS
-ACQ400_UTIL_SITE_METHOD = local
+ACQ400_UTIL_SITE = $(call github,petermilne,acq400_utils,V$(ACQ400_UTIL_VERSION))
 ACQ400_UTIL_INSTALL_STAGING = YES
 
 ifeq ($(BR2_PACKAGE_POPT),y)
